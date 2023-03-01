@@ -68,6 +68,9 @@
       "yarn lintfix"
     ]
   },
+  "engines": {
+    "node": ">=16"
+  },
   "dependencies": {
     "@types/numeral": "^2.0.2",
     "bignumber.js": "^9.1.1",
