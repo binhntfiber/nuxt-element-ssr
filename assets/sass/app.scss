@@ -1,0 +1,101 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200;0,300;0,400;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,600;1,700;1,800;1,900&display=swap');
+
+// vars
+@import 'variables';
+@import 'animations/transitions';
+
+@layer base {
+  :root {
+    --color-text-primary: #000;
+    --color-text-secondary: #646464;
+    --color-bg-primary: #0c0d0f;
+    --color-text-dark: #0c0d0f;
+
+    --color-bg-secondary: #e8e8e8;
+    --color-orange-primary: #f56435;
+    --color-yellow: '#FDC000';
+    --color-dark-gray: #2c2c2c;
+    --color-cyan: #00fff0;
+    --color-bg-dropdown-modal: #ffffff;
+    --color-bg-light: #f5f5f5;
+    --color-border-primary: #eaecf0;
+  }
+  .dark {
+    --color-text-primary: #f5f5f5;
+    --color-text-secondary: #646464;
+    --color-text-dark: #0c0d0f;
+    --color-bg-primary: #0c0d0f;
+    --color-bg-secondary: #e8e8e8;
+    --color-orange-primary: #f56435;
+    --color-yellow: '#FDC000';
+    --color-dark-gray: #2c2c2c;
+    --color-cyan: #00fff0;
+    --color-bg-dropdown-modal: #ffffff;
+    --color-bg-light: #f5f5f5;
+    --color-border-primary: #eaecf0;
+  }
+}
+
+// components
+::-webkit-scrollbar {
+  width: 16px;
+}
+::-webkit-scrollbar-track {
+  background: theme('colors.gray.100');
+  border-left: 1px solid theme('colors.gray.200');
+}
+::-webkit-scrollbar-thumb {
+  border: 4px solid theme('colors.gray.100');
+  background-clip: padding-box;
+  border-radius: 9999px;
+  background-color: theme('colors.slate.300');
+}
+::-webkit-scrollbar-thumb:hover {
+  background-color: theme('colors.slate.400');
+}
+html.dark {
+  ::-webkit-scrollbar-track {
+    @apply bg-slate-800;
+    border-left: 1px solid theme('colors.slate.700');
+  }
+  ::-webkit-scrollbar-thumb {
+    border-color: theme('colors.slate.800');
+    background-color: theme('colors.slate.500');
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background-color: theme('colors.slate.400');
+  }
+
+  .connect-modal-body {
+    @apply bg-dropdown-modal text-dark;
+  }
+  .connect-modal-mask {
+    @apply bg-black opacity-50;
+  }
+}
+
+.connect-modal-body {
+  .connector {
+    .connector__name,
+    .connector__desc {
+      @apply text-dark;
+    }
+  }
+}
+
+.base-toast {
+  background-color: transparent !important;
+}
+
+body {
+  @apply font-inter;
+}
+
+
+
+// .connect-modal-wrapper {
+//   z-index: 99999;
+//   position: relative;
+// }
+
+// animations

@@ -1,0 +1,9 @@
+export const SAVED_CONNECTOR_KEY = 'SAVED_CONNECTOR'
+
+export const CONTRACT_INTERVAL = 15000 // ms
+export const API_INTERVAL = 15000
+export const DEFAULT_GAS_PRICE = 500000000000
+export const DEFAULT_GAS_LIMIT = 1000000
+export const GAS_LIMIT_BUFFER_RATIO = 0.5
+export const GAS_PRICE_BUFFER_RATIO = 0.5
+export const API_LIMIT = 10
