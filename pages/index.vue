@@ -2,6 +2,23 @@
 // composable
 const { t } = useLang()
 
+useHead({
+  title: 'Index page',
+  titleTemplate: '%s - Nuxt 3 Starter',
+  meta: [
+    { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+    {
+      hid: 'description',
+      name: 'description',
+      content: 'Nuxt 3 Element Plus SSR',
+    },
+    {
+      property: 'og:image',
+      content: '/preview_new.png',
+    },
+  ],
+  link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
+})
 // meta
 definePageMeta({
   layout: 'page',
