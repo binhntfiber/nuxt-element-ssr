@@ -20,7 +20,7 @@ a Nuxt 3 starter template or boilerplate with a lot of useful features. and inte
 -   [x] 🌙 Switch Theme (light, dark, system, realtime)
 -   [x] 🇮🇩 Language Switcher
 -   [x] 🪝 Built-in Component & Layout
--   [x] Eslint & Prettier
+-   [x] Eslint & Prettier 
 -   [x] Husky & Commitlint
 -   [x] Custom Workspace Snippets
 -   [x] Built-in Unit Test
