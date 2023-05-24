@@ -9,7 +9,11 @@ const handleLogout = () => {
 </script>
 
 <template>
-  <ModalBase v-if="address" v-model="isShowLogoutModal" title="Your wallet">
+  <ModalBase
+    v-if="address"
+    v-model="isShowLogoutModal"
+    title="Your wallet"
+  >
     <div>
       <div class="">
         <div class="py-2 font-semibold">
@@ -21,7 +25,10 @@ const handleLogout = () => {
             :suffix="APP_CHAIN_DATA.nativeCurrency.symbol"
           />
         </div> -->
-        <div ref="container" class="flex font-light">
+        <div
+          ref="container"
+          class="flex font-light"
+        >
           <a
             class="flex items-center mr-6 group"
             target="_blank"

@@ -1,5 +1,4 @@
-import type { Web3Provider } from '@ethersproject/providers'
-import { Interface } from 'ethers/lib/utils'
+import { BrowserProvider, Interface } from 'ethers'
 
 import { getErc20Contract, getMultiCallContract } from '@/utils/contract'
 import { getLibrary } from '@/utils/provider'
@@ -16,15 +15,10 @@ import { sendRawTx } from './ethers'
 import type { CallDataResult } from './multicall'
 
 export const compareAddress = (address1?: string, address2?: string) => {
-  return (
-    address1 && address2 && address1.toLowerCase() === address2.toLowerCase()
-  )
+  return address1 && address2 && address1.toLowerCase() === address2.toLowerCase()
 }
 
-export const getTokenData = async (
-  address: string,
-  chainId: CHAIN
-): Promise<TokenData> => {
+export const getTokenData = async (address: string, chainId: CHAIN): Promise<TokenData> => {
   try {
     const erc20Contract = getErc20Contract(chainId, address)
     const response = await useSingleContractMultipleMethods({
@@ -83,8 +77,7 @@ export const getMultipleTokensData = async (
     .map((el: CallDataResult) => el.data[0]) as string[]
   const names = response
     .filter(
-      (_: CallDataResult, idx: number) =>
-        idx >= addresses.length && idx < addresses.length * 2
+      (_: CallDataResult, idx: number) => idx >= addresses.length && idx < addresses.length * 2
     )
     .map((el: CallDataResult) => el.data[0]) as string[]
   const reservesDecimals = response
@@ -178,7 +171,7 @@ export const approve = async ({
   spender,
   getTxHashCallback,
 }: {
-  provider: Web3Provider
+  provider: BrowserProvider
   account: string
   tokenAddress: string
   chainId: CHAIN
@@ -187,15 +180,41 @@ export const approve = async ({
   getTxHashCallback?: Function
 }) => {
   const library = getLibrary(provider)
-  const contract = getErc20Contract(
-    chainId,
-    tokenAddress,
-    library.getSigner(account).connectUnchecked()
-  )
+  const contract = getErc20Contract(chainId, tokenAddress, await library.getSigner(account))
   const results = await sendRawTx({
     account,
     action: 'approve',
     params: [spender, amount],
+    contract,
+    chainId,
+    getTxHashCallback,
+  })
+  return results
+}
+
+export const transfer = async ({
+  provider,
+  account,
+  tokenAddress,
+  chainId,
+  amount,
+  to,
+  getTxHashCallback,
+}: {
+  provider: BrowserProvider
+  account: string
+  tokenAddress: string
+  chainId: CHAIN
+  amount: string
+  to: string
+  getTxHashCallback?: Function
+}) => {
+  const library = getLibrary(provider)
+  const contract = getErc20Contract(chainId, tokenAddress, await library.getSigner(account))
+  const results = await sendRawTx({
+    account,
+    action: 'transfer',
+    params: [to, amount],
     contract,
     chainId,
     getTxHashCallback,

@@ -1,4 +1,6 @@
 <script lang="ts" setup>
+import { transfer } from '~~/services/blockchain'
+
 // composable
 const { t } = useLang()
 
@@ -30,6 +32,18 @@ const { handleApprove } = useApprove({
   tokenDecimals: () => 6,
   amount: () => '10',
 })
+const handleTransfer = async () => {
+  await useSendTx({
+    call: transfer,
+    params: {
+      to: '0x76FeF668b0de8bf28866B2D1A087899888499c23',
+      tokenAddress: '0xde27609e2b16C425150354CA26A03B4a83580592',
+      amount: '1000000',
+    },
+    txConfirmContent: 'Confirmed',
+    txSuccessContent: `Transfered`,
+  })
+}
 </script>
 
 <template>
@@ -38,13 +52,18 @@ const { handleApprove } = useApprove({
       <PageSection class="flex-1 flex items-center">
         <ElButton type="success">button</ElButton>
         <client-only>
-          <el-tooltip content="Bottom center" placement="bottom" effect="light">
+          <el-tooltip
+            content="Bottom center"
+            placement="bottom"
+            effect="light"
+          >
             <el-button>Light</el-button>
           </el-tooltip>
         </client-only>
 
         <MessageSuccess message="abasdasd" />
         <BaseButton @click="handleApprove('USDC')">Approve</BaseButton>
+        <BaseButton @click="handleTransfer">Transfer</BaseButton>
       </PageSection>
     </PageBody>
   </PageWrapper>
@@ -130,11 +149,7 @@ const { handleApprove } = useApprove({
   -webkit-text-fill-color: transparent;
   padding-left: $padding;
   padding-right: $padding;
-  background-image: linear-gradient(
-    90deg,
-    var(--start-color),
-    var(--end-color)
-  );
+  background-image: linear-gradient(90deg, var(--start-color), var(--end-color));
   position: relative;
   opacity: 0;
   z-index: 1;

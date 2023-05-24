@@ -9,8 +9,11 @@ export type RequiredKeys<T> = {
   [K in keyof T]-?: {} extends Pick<T, K> ? never : K
 }[keyof T]
 
-export type ReturnPromiseType<T extends (...args: any) => any> =
-  ReturnType<T> extends Promise<infer F> ? F : ReturnType<T>
+export type ReturnPromiseType<T extends (...args: any) => any> = ReturnType<T> extends Promise<
+  infer F
+>
+  ? F
+  : ReturnType<T>
 
 export type ArrayElement<ArrayType extends readonly unknown[]> =
   ArrayType extends readonly (infer ElementType)[] ? ElementType : never

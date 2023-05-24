@@ -25,9 +25,7 @@ const updateIndicator = () => {
   // dom
   const dom = tabHeaderIndicator.value
   // get header tab item dom
-  const currentActiveIndex = tabItems.value.findIndex(
-    ({ name }) => name === activeTab.value
-  )
+  const currentActiveIndex = tabItems.value.findIndex(({ name }) => name === activeTab.value)
   const tabItem = tabs.value.querySelectorAll('.tabs-header-item')[
     currentActiveIndex
   ] as HTMLDivElement
@@ -56,10 +54,7 @@ onBeforeMount(() => {
 })
 onMounted(() => {
   ;(async () => {
-    while (
-      typeof tabHeaderIndicator.value === 'undefined' ||
-      typeof tabs.value === 'undefined'
-    ) {
+    while (typeof tabHeaderIndicator.value === 'undefined' || typeof tabs.value === 'undefined') {
       await new Promise((resolve) => setTimeout(resolve, 10))
     }
     setTimeout(() => {
@@ -70,7 +65,10 @@ onMounted(() => {
 </script>
 
 <template>
-  <div ref="tabs" class="tabs">
+  <div
+    ref="tabs"
+    class="tabs"
+  >
     <ClientOnly>
       <div
         class="tabs-header relative overflow-hidden flex space-x-6 text-sm font-bold text-gray-300 bg-primary-700/45 rounded-t-lg px-5 py-3"
@@ -87,7 +85,10 @@ onMounted(() => {
           }"
           @click="activeTab = item.name"
         >
-          <a href="#" @click.prevent="$emit('click')">
+          <a
+            href="#"
+            @click.prevent="$emit('click')"
+          >
             {{ item.title }}
           </a>
         </div>

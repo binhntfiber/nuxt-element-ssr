@@ -25,8 +25,7 @@ const themeSetting = useState<IThemeSettingOptions>('theme.setting')
 const selectedTheme = computed({
   get() {
     return {
-      title:
-        themes.value.find((el) => el.value === themeSetting.value)?.title || '',
+      title: themes.value.find((el) => el.value === themeSetting.value)?.title || '',
       value: themeSetting.value as string,
     }
   },
@@ -38,7 +37,10 @@ const currentStyle = toRef(props, 'type')
 </script>
 
 <template>
-  <BaseDropdown v-model="selectedTheme" :items="themes">
+  <BaseDropdown
+    v-model="selectedTheme"
+    :items="themes"
+  >
     <template #toggle>
       <div class="flex items-center justify-center w-full h-full">
         <span class="dark:hidden">

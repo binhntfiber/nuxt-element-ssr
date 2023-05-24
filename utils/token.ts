@@ -1,4 +1,4 @@
-import { getAddress } from '@ethersproject/address'
+import { getAddress } from 'ethers'
 import { ZERO_ADDRESS } from '@/constants'
 
 export const isAddress = (val: string) => {

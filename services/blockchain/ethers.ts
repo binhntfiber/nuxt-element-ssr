@@ -1,5 +1,4 @@
-import type { PopulatedTransaction, Contract } from 'ethers'
-import type { TransactionResponse } from '@ethersproject/abstract-provider'
+import type { Transaction, TransactionResponse, Contract } from 'ethers'
 import { BigNumber, compare } from '@/utils/bignumber'
 import type { CHAIN } from '@/types/chain.type'
 import {
@@ -15,22 +14,17 @@ export const getBlockNumber = async (chainId: CHAIN) => {
   return await provider.getBlockNumber()
 }
 
-export const getGasPrice = async (chainId: CHAIN) => {
-  try {
-    const provider = getSimpleRpcProvider(chainId)
+// export const getGasPrice = async (chainId: CHAIN) => {
+//   try {
+//     const provider = getSimpleRpcProvider(chainId)
 
-    const rawGasPrice = new BigNumber((await provider.getGasPrice()).toString())
-    const gas = compare('gt')(rawGasPrice)(0)
-      ? rawGasPrice
-      : new BigNumber(DEFAULT_GAS_PRICE)
-    return new BigNumber(gas)
-      .plus(gas.times(GAS_PRICE_BUFFER_RATIO))
-      .dp(0)
-      .toString()
-  } catch (error) {
-    console.error(error)
-  }
-}
+//     const rawGasPrice = new BigNumber((await provider()).toString())
+//     const gas = compare('gt')(rawGasPrice)(0) ? rawGasPrice : new BigNumber(DEFAULT_GAS_PRICE)
+//     return new BigNumber(gas).plus(gas.times(GAS_PRICE_BUFFER_RATIO)).dp(0).toString()
+//   } catch (error) {
+//     console.error(error)
+//   }
+// }
 
 export const estimateGasLimit = async ({
   options,
@@ -38,22 +32,19 @@ export const estimateGasLimit = async ({
   action,
   params,
   account,
-  gasPrice,
 }: {
-  options: PopulatedTransaction | any
+  options: Transaction | any
   contract: Contract
   action: string
   params: any[]
   account: string
-  gasPrice?: string
 }) => {
   try {
     const rawGasLimit = new BigNumber(
       (
-        await contract.estimateGas[action](...params, {
+        await contract[action].estimateGas(...params, {
           ...options,
           from: account,
-          gasPrice,
         })
       ).toString()
     )
@@ -84,23 +75,22 @@ export const sendRawTx = async ({
   getTxHashCallback?: Function
   options?: any
 }) => {
-  const gasPrice = await getGasPrice(chainId)
+  //   const gasPrice = await getGasPrice(chainId)
   const gasLimit = await estimateGasLimit({
     options,
     account,
     action,
     params,
     contract,
-    gasPrice,
   })
+
   const rs: TransactionResponse = await contract[action](...params, {
     from: account,
     ...options,
-    gasPrice,
     gasLimit,
   })
   if (getTxHashCallback) getTxHashCallback(rs.hash)
   const response = await rs.wait()
-  if (response.status) return response
+  if (response?.status) return response
   throw new Error('Transaction failed')
 }

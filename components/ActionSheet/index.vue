@@ -39,7 +39,10 @@ onMounted(() => {
 
 <template>
   <Teleport to="body">
-    <TransitionRoot :show="show" appear>
+    <TransitionRoot
+      :show="show"
+      appear
+    >
       <div>
         <ActionSheetOverlay @click="close" />
         <TransitionChild

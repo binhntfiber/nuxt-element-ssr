@@ -41,6 +41,10 @@ const error = computed(() => {
       <span class="font-bold text-8xl block">{{ error.code }}</span>
       <span class="block italic">{{ error.message }}</span>
     </h1>
-    <Button text="Home" to="/" size="sm" />
+    <Button
+      text="Home"
+      to="/"
+      size="sm"
+    />
   </component>
 </template>

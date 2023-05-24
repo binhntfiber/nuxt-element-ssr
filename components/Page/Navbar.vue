@@ -31,7 +31,10 @@ const menus = computed((): IMenuItem[] => [
           role="navigation"
         >
           <ul class="flex items-center space-x-8 py-4">
-            <li v-for="(item, i) in menus" :key="i">
+            <li
+              v-for="(item, i) in menus"
+              :key="i"
+            >
               <Anchor
                 v-if="item.type === 'link'"
                 :to="item.route ? item.route : undefined"
@@ -50,9 +53,7 @@ const menus = computed((): IMenuItem[] => [
             </li>
           </ul>
         </nav>
-        <div
-          class="flex space-x-4 border-l ml-6 pl-6 border-gray-900/10 dark:border-gray-50/[0.2]"
-        >
+        <div class="flex space-x-4 border-l ml-6 pl-6 border-gray-900/10 dark:border-gray-50/[0.2]">
           <ConnectWalletButton />
 
           <LanguageSwitcher />

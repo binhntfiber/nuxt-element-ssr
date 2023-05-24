@@ -45,10 +45,17 @@ const handleCommand = (itemValue: string) => {
     trigger="click"
     @command="handleCommand"
   >
-    <div v-if="$slots.toggle" ref="togglerRef">
+    <div
+      v-if="$slots.toggle"
+      ref="togglerRef"
+    >
       <slot name="toggle"></slot>
     </div>
-    <BaseButton v-else ref="togglerRef" variant="light">
+    <BaseButton
+      v-else
+      ref="togglerRef"
+      variant="light"
+    >
       <div class="mr-2">
         {{ selectedItem.title }}
       </div>
@@ -66,7 +73,11 @@ const handleCommand = (itemValue: string) => {
             class="rounded-lg"
             :style="{ 'min-width': `${dropdownMinWidth}px` }"
           >
-            <slot v-if="$slots.item" name="item" :item="item"></slot>
+            <slot
+              v-if="$slots.item"
+              name="item"
+              :item="item"
+            ></slot>
             <div
               v-else
               :class="[

@@ -18,8 +18,7 @@ const emit = defineEmits(['update:modelValue'])
 
 // random
 const randomId = () =>
-  Math.random().toString(36).substring(2, 15) +
-  Math.random().toString(36).substring(2, 15)
+  Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15)
 
 // state
 const id = ref(props.id || randomId())
@@ -44,7 +43,10 @@ onMounted(() => {
 </script>
 
 <template>
-  <label :for="id" class="flex cursor-pointer">
+  <label
+    :for="id"
+    class="flex cursor-pointer"
+  >
     <label
       :for="id"
       class="relative inline-block w-10 mr-2 align-middle select-none transition duration-200 ease-in"

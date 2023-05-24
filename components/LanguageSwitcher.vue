@@ -32,7 +32,10 @@ const items = computed(() => {
 </script>
 
 <template>
-  <BaseDropdown v-model="selectedLocale" :items="items">
+  <BaseDropdown
+    v-model="selectedLocale"
+    :items="items"
+  >
     <template #toggle>
       <div class="flex items-center justify-center w-full h-full">
         <IconLa:language />

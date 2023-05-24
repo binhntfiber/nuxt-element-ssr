@@ -11,9 +11,7 @@ const props = defineProps({
   disabled: { type: Boolean, default: false },
   label: { type: Boolean, default: false },
   rounded: {
-    type: String as PropType<
-      'none' | 'full' | 'normal' | 'sm' | 'md' | 'lg' | 'xl'
-    >,
+    type: String as PropType<'none' | 'full' | 'normal' | 'sm' | 'md' | 'lg' | 'xl'>,
     default: 'lg',
   },
   size: {
@@ -42,7 +40,11 @@ const className = computed(() => {
 </script>
 
 <template>
-  <button :class="className" :disabled="disabled" :type="type">
+  <button
+    :class="className"
+    :disabled="disabled"
+    :type="type"
+  >
     <slot />
   </button>
 </template>

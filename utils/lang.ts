@@ -44,21 +44,16 @@ export function LanguageManager() {
   // methods
   const getSystemLocale = (): string => {
     try {
-      const foundLang = window
-        ? window.navigator.language.substring(0, 2)
-        : 'en'
+      const foundLang = window ? window.navigator.language.substring(0, 2) : 'en'
       return availableLocales[foundLang] ? foundLang : 'en'
     } catch (error) {
       return 'en'
     }
   }
-  const getUserLocale = (): string =>
-    localeUserSetting.value || getSystemLocale()
+  const getUserLocale = (): string => localeUserSetting.value || getSystemLocale()
 
   // state
-  const localeSetting = useState<string>('locale.setting', () =>
-    getUserLocale()
-  )
+  const localeSetting = useState<string>('locale.setting', () => getUserLocale())
 
   // watchers
   watch(localeSetting, (localeSetting) => {

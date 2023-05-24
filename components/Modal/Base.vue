@@ -64,7 +64,10 @@ function closeModal() {
       <div class="text-dark">
         <slot></slot>
       </div>
-      <template v-if="$slots.button" #footer>
+      <template
+        v-if="$slots.button"
+        #footer
+      >
         <slot name="button"></slot>
       </template>
     </el-dialog>

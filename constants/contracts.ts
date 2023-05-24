@@ -9,6 +9,6 @@ export const CONTRACTS_BY_CHAINS: { [key: string]: Record<number, string> } = {
 }
 
 export const MOCK_ETH_ADDRESS = '0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE'
-export const DEFAULT_APPROVE_AMOUNT = ethers.constants.MaxInt256.toString()
+export const DEFAULT_APPROVE_AMOUNT = ethers.MaxInt256.toString()
 
 export const ZERO_ADDRESS = '0x0000000000000000000000000000000000000000'

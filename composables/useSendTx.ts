@@ -1,4 +1,4 @@
-import type { TransactionReceipt } from '@ethersproject/abstract-provider'
+import type { TransactionReceipt } from 'ethers'
 
 import { useConnectWallet } from './useConnectWallet'
 import { useModals } from './useModals'
@@ -8,8 +8,7 @@ import type { SendTxOptions } from '~/types'
 
 export const useSendTx = async (options: SendTxOptions) => {
   const { address, provider, APP_CHAIN_ID } = useConnectWallet()
-  const { setModalTxSubmitted, setModalWaitingTxState, setModalTxRejected } =
-    useModals()
+  const { setModalTxSubmitted, setModalWaitingTxState, setModalTxRejected } = useModals()
   const { toastError, toast, toastSuccess } = useToastification()
   const receipt = ref<TransactionReceipt>()
   const loadingUserConfirm = ref(false)
@@ -37,23 +36,19 @@ export const useSendTx = async (options: SendTxOptions) => {
 
         loadingTx.value = false
         setModalTxSubmitted(false)
-        txHashesPending.value = txHashesPending.value.filter(
-          (el) => el !== receipt.value?.transactionHash
-        )
+        txHashesPending.value = txHashesPending.value.filter((el) => el !== receipt.value?.hash)
         toast({
           component: NotificationSuccess,
           props: {
             title: options.txSuccessContent,
-            txHash: receipt.value?.transactionHash,
+            txHash: receipt.value?.hash,
           },
         })
       }
     } catch (error: any) {
       loadingUserConfirm.value = false
       loadingTx.value = false
-      txHashesPending.value = txHashesPending.value.filter(
-        (el) => el !== receipt.value?.transactionHash
-      )
+      txHashesPending.value = txHashesPending.value.filter((el) => el !== receipt.value?.hash)
 
       receipt.value = undefined
       console.error(error)

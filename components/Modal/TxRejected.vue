@@ -3,7 +3,10 @@ const { isShowModalTxRejected } = useModals()
 </script>
 
 <template>
-  <ModalBase v-model="isShowModalTxRejected" title="Transaction rejected">
+  <ModalBase
+    v-model="isShowModalTxRejected"
+    title="Transaction rejected"
+  >
     <div class="box-border p-4">
       <div class="py-4 flex items-center justify-center flex-col">
         <IconUis:times-circle class="w-36 h-36 text-red-500" />

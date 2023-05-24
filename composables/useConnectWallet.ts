@@ -11,9 +11,7 @@ export const useConnectWallet = () => {
   const showModalConnect = useState('showModalConnect', () => false)
   const connectFunc = ref<Function | null>(null)
   const config = useRuntimeConfig()
-  const APP_CHAIN_ID = computed(
-    () => Number(chainId.value || config.public.DEFAULT_CHAIN) as CHAIN
-  )
+  const APP_CHAIN_ID = computed(() => Number(chainId.value || config.public.DEFAULT_CHAIN) as CHAIN)
   const APP_CHAIN_DATA = computed(() => CHAIN_INFO[APP_CHAIN_ID.value])
   const resetState = () => {
     if (provider.value) {
@@ -88,10 +86,7 @@ export const useConnectWallet = () => {
     subscribe()
   }
   const switchChainFunc = computed(() => {
-    if (
-      address.value &&
-      cachedConnector.value === AvailableConnectors.METAMASK
-    ) {
+    if (address.value && cachedConnector.value === AvailableConnectors.METAMASK) {
       return connectFunc.value
     }
     return null

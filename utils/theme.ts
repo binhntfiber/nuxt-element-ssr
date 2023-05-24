@@ -17,8 +17,7 @@ export function ThemeManager() {
   const themeUserSetting = useCookie<IThemeSettingOptions>('theme')
 
   // methods
-  const getUserSetting = (): IThemeSettingOptions =>
-    themeUserSetting.value || 'system'
+  const getUserSetting = (): IThemeSettingOptions => themeUserSetting.value || 'system'
   const getSystemTheme = (): ITheme => {
     try {
       return window
@@ -38,9 +37,7 @@ export function ThemeManager() {
   }
 
   // state
-  const themeSetting = useState<IThemeSettingOptions>('theme.setting', () =>
-    getUserSetting()
-  )
+  const themeSetting = useState<IThemeSettingOptions>('theme.setting', () => getUserSetting())
   const themeCurrent = useState<ITheme>('theme.current', () =>
     process.client ? getSystemTheme() : 'light'
   )

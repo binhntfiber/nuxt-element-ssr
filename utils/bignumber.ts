@@ -8,22 +8,14 @@ BigNumber.set({
 })
 
 const compare =
-  (method: 'gt' | 'gte' | 'lt' | 'lte' | 'eq') =>
-  (inputA: ANumber) =>
-  (inputB: ANumber) =>
+  (method: 'gt' | 'gte' | 'lt' | 'lte' | 'eq') => (inputA: ANumber) => (inputB: ANumber) =>
     new BigNumber(inputA)[method](inputB)
 
-const shift = (
-  number: string | BigNumber | number,
-  decimals: number | string | BigNumber
-) => {
+const shift = (number: string | BigNumber | number, decimals: number | string | BigNumber) => {
   const dec = new BigNumber(decimals).toNumber()
   return new BigNumber(number).shiftedBy(dec).dp(0).toString()
 }
-const unshift = (
-  number: string | BigNumber | number,
-  decimals: number | string | BigNumber
-) => {
+const unshift = (number: string | BigNumber | number, decimals: number | string | BigNumber) => {
   const dec = new BigNumber(decimals).toNumber()
   return new BigNumber(number).shiftedBy(-dec).toString()
 }

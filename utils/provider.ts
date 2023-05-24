@@ -4,10 +4,10 @@ import type { CHAIN } from '@/types/chain.type'
 
 export const getSimpleRpcProvider = (chainId: CHAIN) => {
   const chainInfo = CHAIN_INFO[chainId]
-  return new ethers.providers.StaticJsonRpcProvider(chainInfo.rpcUrl)
+  return new ethers.JsonRpcProvider(chainInfo.rpcUrl)
 }
 
 export const getLibrary = (provider: any) => {
-  const library = new ethers.providers.Web3Provider(provider)
+  const library = new ethers.BrowserProvider(provider)
   return library
 }

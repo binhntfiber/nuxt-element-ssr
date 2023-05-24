@@ -77,9 +77,7 @@ const translateFile = async (file, locale) => {
 const cwd = process.cwd()
 const localePath = path.join(cwd, getArg(0, './locales'))
 const engLocale = path.join(localePath, getArg(1, 'en.yml'))
-const listLocaleToTranslate = getFiles(localePath).filter(
-  (l) => l.lang !== 'en'
-)
+const listLocaleToTranslate = getFiles(localePath).filter((l) => l.lang !== 'en')
 
 // main funcs
 async function main() {
@@ -87,9 +85,7 @@ async function main() {
   console.log('==============================================')
   console.log(`Target Locales Path: ${localePath}`)
   console.log(`Main Locale: ${engLocale}`)
-  console.log(
-    `Locales to translate: ${listLocaleToTranslate.map((f) => f.lang)}`
-  )
+  console.log(`Locales to translate: ${listLocaleToTranslate.map((f) => f.lang)}`)
 
   // translating
   console.log('==============================================')

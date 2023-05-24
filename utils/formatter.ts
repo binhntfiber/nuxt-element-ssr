@@ -39,10 +39,7 @@ export const toCurrency = (
 export const toPercent = (val: string | number, decimals = 2) => {
   if (val && Number(val)) {
     const roundingMode = BigNumber.ROUND_DOWN
-    const percent = new BigNumber(val)
-      .times(100)
-      .toFormat(decimals, roundingMode)
-      .toString()
+    const percent = new BigNumber(val).times(100).toFormat(decimals, roundingMode).toString()
     const replacedOutput = percent.replace(/(\.[0-9]*[1-9])0+$|\.0*$/, '$1')
     return `${replacedOutput}%`
   }

@@ -1,5 +1,4 @@
-import type { Interface } from '@ethersproject/abi'
-import type { Contract } from 'ethers'
+import { Contract, Interface } from 'ethers'
 import { getMultiCallContract } from '@/utils/contract'
 import type { Call } from '@/types/multicall.type'
 import type { CHAIN } from '@/types/chain.type'
@@ -84,7 +83,7 @@ export const useSingleCallResult = async ({
     itf: contract?.interface,
     calls: [
       {
-        address: contract?.address,
+        address: await contract?.getAddress(),
         name: methodName,
         params: inputs,
       },
@@ -132,10 +131,11 @@ export const useSingleContractMultipleData = async ({
   callInputs: any[]
   chainId: CHAIN
 }) => {
+  const address = await contract.getAddress()
   const res = await calldata({
     itf: contract?.interface,
     calls: callInputs.map((inputs) => ({
-      address: contract?.address,
+      address,
       name: methodName,
       params: inputs,
     })),
@@ -156,10 +156,11 @@ export const useSingleContractMultipleMethods = async ({
   callInputs: any[]
   chainId: CHAIN
 }) => {
+  const address = await contract.getAddress()
   const res = await calldata({
     itf: contract?.interface,
     calls: methodNames.map((method, index: number) => ({
-      address: contract?.address,
+      address,
       name: method,
       params: callInputs[index],
     })),

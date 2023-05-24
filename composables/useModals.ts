@@ -1,10 +1,7 @@
 export const useModals = () => {
   const isShowModalListToken = useState('isShowModalListToken', () => false)
   const isShowLogoutModal = useState('isShowLogoutModal', () => false)
-  const isShowModalWaitingConfirmTx = useState(
-    'isShowModalWaitingConfirmTx',
-    () => false
-  )
+  const isShowModalWaitingConfirmTx = useState('isShowModalWaitingConfirmTx', () => false)
   const isShowModalTxSubmitted = useState('isShowModalTxSubmitted', () => false)
   const isShowModalTxRejected = useState('isShowModalTxRejected', () => false)
   const waitingModalContent = useState('waitingModalContent', () => '')
